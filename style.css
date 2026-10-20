@@ -73,7 +73,7 @@ a {
 
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-              url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+              url('imagenes/imagenhero.jpg') center/cover no-repeat;
   color: #ffffff;
   text-align: center;
   padding: 80px 20px;
