@@ -257,6 +257,132 @@ a {
   text-align: center;
 }
 
+
+.seccion-catalogo {
+  padding: 60px 0;
+  background-color: #f7f9f6;
+}
+
+
+.grid-animales {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.tarjeta-animal {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-img-contenedor {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.tarjeta-img-contenedor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-disponible {
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
+.badge-adoptado {
+  background-color: #757575;
+  color: #ffffff;
+}
+
+
+.tarjeta-cuerpo {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tarjeta-cuerpo h3 {
+  color: #2e7d32;
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.datos-animal {
+  font-size: 0.85rem;
+  color: #444444;
+  margin-bottom: 5px;
+}
+
+.raza-animal {
+  font-size: 0.85rem;
+  color: #777777;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+
+.btn-tarjeta {
+  display: block;
+  text-align: center;
+  background-color: #e65100;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-tarjeta:hover {
+  background-color: #bf360c;
+}
+
+.btn-deshabilitado {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.btn-deshabilitado:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive del catálogo */
+@media (max-width: 992px) {
+  .grid-animales {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 576px) {
+  .grid-animales {
+    grid-template-columns: 1fr; 
+  }
+}
+
 @media (max-width: 768px) {
   .mosaico-fotos {
     grid-template-columns: 1fr;
