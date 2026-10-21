@@ -1,413 +1,769 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Quita el margen predeterminado del navegador. */
+  padding: 0; /* Quita el espacio interno predeterminado. */
+  box-sizing: border-box; /* Incluye bordes y relleno dentro del tamano definido. */
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Desplaza suavemente al navegar a una seccion. */
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto; /* Evita animaciones de desplazamiento si el usuario lo prefiere. */
   }
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f7f9f6;
-  color: #333333;
-  line-height: 1.6;
+  font-family: Arial, Helvetica, sans-serif; /* Define una fuente legible con alternativas comunes. */
+  background-color: #f7f9f6; /* Da un fondo claro a toda la pagina. */
+  color: #333333; /* Establece el color principal del texto. */
+  line-height: 1.6; /* Separa las lineas para facilitar la lectura. */
 }
 
 .contenedor {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 90%; /* Deja un margen lateral en pantallas pequenas. */
+  max-width: 1100px; /* Evita que el contenido se extienda demasiado en pantallas grandes. */
+  margin: 0 auto; /* Centra el contenedor horizontalmente. */
 }
 
 a {
-  text-decoration: none;
-  color: black;
+  text-decoration: none; /* Quita el subrayado predeterminado de los enlaces. */
+  color: black; /* Define el color inicial de los enlaces. */
 }
 
 
 .header {
-  background-color: #ffffff;
-  border-bottom: 2px solid #e0e0e0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background-color: #ffffff; /* Mantiene la barra de navegacion con fondo blanco. */
+  border-bottom: 2px solid #e0e0e0; /* Separa visualmente la barra del contenido. */
+  position: sticky; /* Conserva la barra visible al desplazarse. */
+  top: 0; /* Fija la barra al borde superior de la ventana. */
+  z-index: 10; /* Coloca la barra por encima del contenido de la pagina. */
 }
 
 .nav-contenedor {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
+  display: flex; /* Alinea el logo y los enlaces en una fila. */
+  justify-content: space-between; /* Separa el logo de los enlaces. */
+  align-items: center; /* Centra verticalmente los elementos de navegacion. */
+  padding: 15px 0; /* Agrega espacio arriba y abajo de la navegacion. */
 }
 
 .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #2e7d32;
+  font-size: 1.3rem; /* Aumenta el tamano del nombre de la fundacion. */
+  font-weight: bold; /* Resalta el nombre de la fundacion. */
+  color: #2e7d32; /* Usa el verde principal de la pagina. */
 }
 
 .nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  display: flex; /* Coloca los enlaces de navegacion en una fila. */
+  align-items: center; /* Alinea verticalmente los enlaces. */
+  gap: 20px; /* Deja espacio uniforme entre enlaces. */
 }
 
 .nav a {
-  font-weight: 500;
-  color: #444444;
+  font-weight: 500; /* Da un poco de enfasis a los enlaces. */
+  color: #444444; /* Mantiene buen contraste sobre el fondo blanco. */
 }
 
 .nav a:hover {
-  color: #2e7d32;
+  color: #2e7d32; /* Cambia el enlace a verde al pasar el cursor. */
 }
 
 
 .btn-nav {
-  background-color: #c014ff; 
-  color: #ffffff !important;
-  padding: 8px 16px;
-  border-radius: 4px;
+  background-color: #c014ff; /* Da al enlace de contacto apariencia de boton. */
+  color: #ffffff !important; /* Fuerza texto blanco aunque exista una regla general para enlaces. */
+  padding: 8px 16px; /* Aumenta el area visible y clicable del boton. */
+  border-radius: 4px; /* Redondea ligeramente las esquinas del boton. */
 }
 
 .btn-nav:hover {
-  background-color: #bf360c;
+  background-color: #bf360c; /* Oscurece el boton al pasar el cursor. */
 }
 
+/* Capas del hero: imagen al fondo, velo oscuro encima y texto en primer plano. */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-              url('imagenes/imagenhero.jpg') center/cover no-repeat;
-  color: #ffffff;
-  text-align: center;
-  padding: 80px 20px;
+  position: relative; /* Sirve de referencia para posicionar la imagen y el velo. */
+  isolation: isolate; /* Mantiene las capas del hero separadas del resto de la pagina. */
+  overflow: hidden; /* Recorta cualquier parte de la imagen que sobresalga. */
+  color: #ffffff; /* Hace que el texto del hero sea blanco. */
+  text-align: center; /* Centra el texto y los botones del hero. */
+  padding: 80px 20px; /* Da altura al hero y espacio lateral al contenido. */
+}
+
+.hero-fondo {
+  position: absolute; /* Coloca la imagen detras del contenido del hero. */
+  inset: 0; /* Extiende la imagen hasta los cuatro bordes del hero. */
+  z-index: -2; /* Mantiene la imagen en la capa mas baja del hero. */
+  width: 100%; /* Hace que la imagen cubra todo el ancho del hero. */
+  height: 100%; /* Hace que la imagen cubra toda la altura del hero. */
+  object-fit: cover; /* Llena el espacio sin deformar la imagen. */
+}
+
+.hero::before {
+  position: absolute; /* Superpone el velo oscuro sobre la imagen. */
+  inset: 0; /* Extiende el velo hasta todos los bordes del hero. */
+  z-index: -1; /* Situa el velo entre la foto y el texto. */
+  background-color: rgba(0, 0, 0, 0.55); /* Oscurece la foto para mejorar la lectura del texto. */
+  content: ""; /* Crea el elemento necesario para mostrar el velo. */
+}
+
+.hero-contenido {
+  position: relative; /* Coloca el texto delante de las capas de fondo. */
 }
 
 .hero-contenido h1 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
+  font-size: 2.2rem; /* Destaca el titulo principal del sitio. */
+  margin-bottom: 15px; /* Separa el titulo del texto descriptivo. */
 }
 
 .hero-contenido p {
-  font-size: 1.1rem;
-  max-width: 650px;
-  margin: 0 auto 25px auto;
+  font-size: 1.1rem; /* Hace el texto introductorio un poco mas grande. */
+  max-width: 650px; /* Evita que las lineas sean demasiado largas. */
+  margin: 0 auto 25px auto; /* Centra el texto y deja espacio antes de los botones. */
 }
 
 .hero-botones {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+  display: flex; /* Coloca los botones del hero en una fila. */
+  justify-content: center; /* Centra los botones horizontalmente. */
+  gap: 15px; /* Separa los botones entre si. */
 }
 
 
 .btn {
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 4px;
-  font-weight: bold;
+  display: inline-block; /* Permite aplicar dimensiones y mantener el boton en linea. */
+  padding: 10px 22px; /* Define el espacio interior del boton. */
+  border-radius: 4px; /* Redondea las esquinas del boton. */
+  font-weight: bold; /* Resalta el texto de accion. */
 }
 
 .btn-primario {
-  background-color: #e65100;
-  color: #ffffff;
+  background-color: #e65100; /* Usa naranja para destacar la accion principal. */
+  color: #ffffff; /* Mantiene el texto legible sobre el naranja. */
 }
 
 .btn-primario:hover {
-  background-color: #bf360c;
+  background-color: #bf360c; /* Oscurece el boton al pasar el cursor. */
 }
 
 .btn-secundario {
-  background-color: transparent;
-  color: #ffffff;
-  border: 2px solid #ffffff;
+  background-color: transparent; /* Deja visible la imagen de fondo. */
+  color: #ffffff; /* Usa texto blanco sobre la imagen oscurecida. */
+  border: 2px solid #ffffff; /* Delimita el boton sin rellenarlo. */
 }
 
 .btn-secundario:hover {
-  background-color: #ffffff;
-  color: #2e7d32;
+  background-color: #ffffff; /* Rellena el boton al pasar el cursor. */
+  color: #2e7d32; /* Cambia el texto a verde para contrastar con el fondo blanco. */
 }
 
 
 .seccion-carrusel {
-  padding: 50px 0;
-  background-color: #ffffff;
+  padding: 50px 0; /* Separa el carrusel de las secciones vecinas. */
+  background-color: #ffffff; /* Distingue la seccion con un fondo blanco. */
 }
 
 .titulo-seccion {
-  text-align: center;
-  color: #2e7d32;
-  margin-bottom: 25px;
-  font-size: 1.7rem;
+  text-align: center; /* Centra los titulos de las secciones. */
+  color: #2e7d32; /* Usa el verde principal en los encabezados. */
+  margin-bottom: 25px; /* Separa el titulo del contenido de su seccion. */
+  font-size: 1.7rem; /* Da jerarquia al titulo frente al texto normal. */
 }
 
 .carrusel-marco {
-  width: 100%;
-  max-width: 850px;
-  height: 400px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: relative;
+  width: 100%; /* Permite que el marco use el ancho disponible. */
+  max-width: 850px; /* Limita el ancho maximo del carrusel. */
+  height: 400px; /* Define la altura de las diapositivas en escritorio. */
+  margin: 0 auto; /* Centra el carrusel en la pagina. */
+  overflow: hidden; /* Oculta las diapositivas que quedan fuera del marco. */
+  border-radius: 8px; /* Redondea las esquinas del carrusel. */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Agrega una sombra sutil alrededor del marco. */
+  position: relative; /* Sirve de referencia para elementos posicionados dentro del carrusel. */
 }
 
 
 .carrusel-tira {
-  display: flex;
-  width: 400%;
-  height: 100%;
-  animation: deslizar 12s infinite;
+  display: flex; /* Alinea las diapositivas horizontalmente. */
+  width: 400%; /* Reserva espacio para las cuatro diapositivas del carrusel. */
+  height: 100%; /* Hace que la tira tenga la altura completa del marco. */
+  animation: deslizar 12s infinite; /* Repite el recorrido automatico cada 12 segundos. */
 }
 
 
 .slide {
-  width: 25%;
-  height: 100%;
-  position: relative;
+  width: 25%; /* Asigna a cada diapositiva una cuarta parte de la tira. */
+  height: 100%; /* Hace que la diapositiva ocupe toda la altura del marco. */
+  position: relative; /* Permite colocar su texto sobre la imagen. */
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; /* Hace que la foto llene el ancho de la diapositiva. */
+  height: 100%; /* Hace que la foto llene la altura de la diapositiva. */
+  object-fit: cover; /* Recorta lo necesario sin deformar la foto. */
 }
 
 
 .slide-texto {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  padding: 10px 15px;
-  font-size: 0.95rem;
-  text-align: center;
+  position: absolute; /* Superpone el texto en la parte inferior de la foto. */
+  bottom: 0; /* Pega el texto al borde inferior de la diapositiva. */
+  left: 0; /* Alinea el texto con el borde izquierdo. */
+  width: 100%; /* Extiende el fondo del texto por toda la foto. */
+  background: rgba(0, 0, 0, 0.6); /* Oscurece la banda para mejorar el contraste. */
+  color: #ffffff; /* Hace blanco el texto sobre la banda oscura. */
+  padding: 10px 15px; /* Da espacio interior alrededor del texto. */
+  font-size: 0.95rem; /* Ajusta el texto de descripcion del carrusel. */
+  text-align: center; /* Centra el texto sobre la foto. */
 }
 
 @keyframes deslizar {
   0%, 20% {
-    transform: translateX(0%);  
+    transform: translateX(0%); /* Muestra la primera foto al inicio y durante su pausa. */
   }
   25%, 45% {
-    transform: translateX(-25%); 
+    transform: translateX(-25%); /* Desplaza la tira para mostrar la segunda foto. */
   }
   50%, 70% {
-    transform: translateX(-50%);    
+    transform: translateX(-50%); /* Desplaza la tira para mostrar la tercera foto. */
   }
   75%, 95% {
-    transform: translateX(-75%);   
+    transform: translateX(-75%); /* Desplaza la tira para mostrar la cuarta foto. */
   }
   100% {
-    transform: translateX(0%);   
+    transform: translateX(0%); /* Regresa al inicio para repetir el carrusel. */
   }
 }
 
 .seccion-galeria {
-  padding: 60px 0;
-  background-color: #ffffff;
+  padding: 60px 0; /* Agrega espacio vertical alrededor de la galeria. */
+  background-color: #ffffff; /* Mantiene el fondo blanco de la galeria. */
 }
 
 .subtitulo-seccion {
-  text-align: center;
-  color: #666666;
-  margin-top: -15px;
-  margin-bottom: 35px;
-  font-size: 1rem;
+  text-align: center; /* Centra el texto introductorio de cada seccion. */
+  color: #666666; /* Usa un gris secundario para distinguirlo del titulo. */
+  margin-top: -15px; /* Acerca el subtitulo al titulo de la seccion. */
+  margin-bottom: 35px; /* Separa el subtitulo de las tarjetas o fotos. */
+  font-size: 1rem; /* Mantiene el subtitulo en tamano de texto normal. */
 }
 
 
 .mosaico-fotos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: grid; /* Organiza las fotos en una cuadricula. */
+  grid-template-columns: repeat(3, 1fr); /* Muestra tres columnas iguales en escritorio. */
+  gap: 20px; /* Separa las fotos vertical y horizontalmente. */
 }
 
 .foto-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: relative; /* Permite ubicar el pie de foto sobre la imagen. */
+  overflow: hidden; /* Recorta contenido que sobresalga de las esquinas redondeadas. */
+  border-radius: 6px; /* Redondea las esquinas de cada foto. */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Separa visualmente cada foto del fondo. */
 }
 
 .foto-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
+  width: 100%; /* Ajusta la foto al ancho de su tarjeta. */
+  height: 220px; /* Mantiene una altura uniforme en la galeria. */
+  object-fit: cover; /* Recorta la foto para llenar el espacio sin deformarla. */
+  display: block; /* Evita el espacio extra que las imagenes en linea dejan debajo. */
 }
 
 .foto-pie {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(46, 125, 50, 0.85);
-  color: #ffffff;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-align: center;
+  position: absolute; /* Coloca el pie de foto encima de la imagen. */
+  bottom: 0; /* Fija el pie al borde inferior de la tarjeta. */
+  left: 0; /* Alinea el pie con el borde izquierdo. */
+  width: 100%; /* Extiende el fondo del pie por toda la foto. */
+  background-color: rgba(46, 125, 50, 0.85); /* Da un fondo verde semitransparente al texto. */
+  color: #ffffff; /* Hace blanco el texto sobre el fondo verde. */
+  padding: 8px 12px; /* Separa el texto de los bordes del pie. */
+  font-size: 0.85rem; /* Ajusta el tamano del texto sobre las fotos. */
+  font-weight: bold; /* Resalta el pie de foto. */
+  text-align: center; /* Centra el texto del pie. */
 }
 
 
 .seccion-catalogo {
-  padding: 60px 0;
-  background-color: #f7f9f6;
+  padding: 60px 0; /* Deja espacio alrededor del catalogo de animales. */
+  background-color: #f7f9f6; /* Distingue el catalogo de las secciones blancas. */
 }
 
 
 .grid-animales {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  display: grid; /* Organiza las tarjetas de animales en filas y columnas. */
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Crea cuatro columnas iguales que pueden encogerse. */
+  gap: 25px; /* Separa las tarjetas entre si. */
 }
 
 .tarjeta-animal {
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
+  background-color: #ffffff; /* Resalta cada tarjeta sobre el fondo del catalogo. */
+  border-radius: 8px; /* Redondea las esquinas de la tarjeta. */
+  overflow: hidden; /* Recorta la imagen en las esquinas redondeadas. */
+  border: 1px solid #e0e0e0; /* Delimita la tarjeta con un borde sutil. */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* Agrega profundidad ligera a la tarjeta. */
+  display: flex; /* Permite distribuir verticalmente la imagen y los datos. */
+  flex-direction: column; /* Apila la imagen y el cuerpo de la tarjeta. */
 }
 
 .tarjeta-img-contenedor {
-  position: relative;
-  width: 100%;
-  height: 200px;
+  position: relative; /* Sirve de referencia para la etiqueta de estado. */
+  width: 100%; /* Hace que el bloque de foto ocupe todo el ancho de la tarjeta. */
+  height: 220px; /* Da una altura uniforme a las fotos del catalogo. */
 }
 
 .tarjeta-img-contenedor img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; /* Ajusta la foto al ancho del contenedor. */
+  height: 100%; /* Ajusta la foto a la altura del contenedor. */
+  object-fit: cover; /* Recorta la foto para llenar el marco sin deformarla. */
+  display: block; /* Quita el espacio inferior propio de una imagen en linea. */
 }
 
+.seccion-mision-vision {
+  padding: 60px 0; /* Separa el contenido de los bordes de la seccion. */
+  background-color: #f7f9f6; /* Usa el fondo claro compartido por otras secciones. */
+}
+
+.bloques-mv {
+  display: grid; /* Distribuye los bloques de mision y vision en una cuadricula. */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Crea dos columnas iguales y flexibles. */
+  gap: 24px; /* Separa los dos bloques. */
+}
+
+.tarjeta-mv {
+  padding: 28px; /* Da espacio interno al contenido de cada bloque. */
+  background-color: #ffffff; /* Destaca los bloques sobre el fondo de la seccion. */
+  border: 1px solid #e5e7eb; /* Dibuja un borde fino alrededor de la tarjeta. */
+  border-left: 5px solid #2e7d32; /* Agrega un acento verde en el lado izquierdo. */
+  border-radius: 12px; /* Redondea las esquinas de la tarjeta. */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Agrega una sombra suave. */
+}
+
+.icono-mv {
+  margin-bottom: 12px; /* Separa el icono del titulo del bloque. */
+  font-size: 1.8rem; /* Aumenta el tamano del icono decorativo. */
+}
+
+.tarjeta-mv h3 {
+  margin-bottom: 10px; /* Deja espacio entre el titulo y su descripcion. */
+  color: #2e7d32; /* Usa verde para destacar el titulo. */
+  font-size: 1.25rem; /* Aumenta el titulo respecto al texto normal. */
+}
+
+.tarjeta-mv p {
+  color: #444444; /* Mantiene buen contraste para la descripcion. */
+  line-height: 1.7; /* Facilita la lectura de los parrafos. */
+}
 
 .badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  border-radius: 4px;
-  text-transform: uppercase;
+  position: absolute; /* Superpone la etiqueta sobre la esquina de la foto. */
+  top: 10px; /* Separa la etiqueta del borde superior. */
+  right: 10px; /* Separa la etiqueta del borde derecho. */
+  padding: 4px 10px; /* Da espacio alrededor del texto de estado. */
+  font-size: 0.75rem; /* Mantiene la etiqueta compacta. */
+  font-weight: bold; /* Resalta el estado del animal. */
+  border-radius: 4px; /* Redondea las esquinas de la etiqueta. */
+  text-transform: uppercase; /* Muestra el estado en mayusculas. */
 }
 
 .badge-disponible {
-  background-color: #2e7d32;
-  color: #ffffff;
+  background-color: #2e7d32; /* Identifica con verde a los animales disponibles. */
+  color: #ffffff; /* Mantiene legible el estado sobre el verde. */
 }
 
 .badge-adoptado {
-  background-color: #757575;
-  color: #ffffff;
+  background-color: #757575; /* Identifica con gris a los animales ya adoptados. */
+  color: #ffffff; /* Mantiene legible el estado sobre el gris. */
 }
 
 
 .tarjeta-cuerpo {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  padding: 15px; /* Separa los datos de los bordes de la tarjeta. */
+  display: flex; /* Permite ordenar los datos y el boton verticalmente. */
+  flex-direction: column; /* Apila el titulo, los datos y el boton. */
+  flex-grow: 1; /* Extiende el cuerpo para alinear los botones al pie de las tarjetas. */
 }
 
 .tarjeta-cuerpo h3 {
-  color: #2e7d32;
-  font-size: 1.25rem;
-  margin-bottom: 5px;
+  color: #2e7d32; /* Destaca el nombre del animal con el verde principal. */
+  font-size: 1.25rem; /* Hace que el nombre destaque sobre los detalles. */
+  margin-bottom: 5px; /* Separa el nombre de la edad y el tamano. */
 }
 
 .datos-animal {
-  font-size: 0.85rem;
-  color: #444444;
-  margin-bottom: 5px;
+  font-size: 0.85rem; /* Muestra edad y tamano en texto compacto. */
+  color: #444444; /* Conserva contraste suficiente para los datos. */
+  margin-bottom: 5px; /* Separa los datos de la descripcion de raza. */
 }
 
 .raza-animal {
-  font-size: 0.85rem;
-  color: #777777;
-  margin-bottom: 15px;
-  flex-grow: 1;
+  font-size: 0.85rem; /* Mantiene compacta la descripcion de raza. */
+  color: #777777; /* Diferencia la descripcion de los datos principales. */
+  margin-bottom: 15px; /* Deja espacio antes del boton de perfil. */
+  flex-grow: 1; /* Empuja el boton hacia abajo para alinear las tarjetas. */
 }
 
 
 .btn-tarjeta {
-  display: block;
-  text-align: center;
-  background-color: #e65100;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
+  display: block; /* Hace que el boton ocupe todo el ancho disponible. */
+  text-align: center; /* Centra el texto dentro del boton. */
+  background-color: #e65100; /* Destaca la accion para abrir el perfil. */
+  color: #ffffff; /* Mantiene legible el texto del boton. */
+  padding: 8px 12px; /* Aumenta el espacio clicable del boton. */
+  border-radius: 4px; /* Redondea las esquinas del boton. */
+  font-size: 0.9rem; /* Ajusta el tamano del texto del boton. */
+  font-weight: bold; /* Resalta la accion disponible. */
+  border: none; /* Quita el borde predeterminado del boton. */
+  cursor: pointer; /* Indica que el elemento se puede pulsar. */
 }
 
 .btn-tarjeta:hover {
-  background-color: #bf360c;
+  background-color: #bf360c; /* Oscurece el boton cuando se pasa el cursor. */
 }
 
 .btn-deshabilitado {
-  background-color: #e0e0e0;
-  color: #9e9e9e;
-  cursor: not-allowed;
+  background-color: #e0e0e0; /* Atenua visualmente un boton deshabilitado. */
+  color: #9e9e9e; /* Reduce el contraste para indicar que no esta disponible. */
+  cursor: not-allowed; /* Indica que la accion no se puede realizar. */
 }
 
 .btn-deshabilitado:hover {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0; /* Evita que cambie el color al pasar sobre el boton. */
+}
+
+.modal-perfil {
+  display: none; /* Oculta los perfiles hasta que se active su enlace. */
+  position: fixed; /* Mantiene la ventana fija sobre la pagina. */
+  inset: 0; /* Extiende el fondo de la ventana por toda la pantalla. */
+  z-index: 20; /* Coloca la ventana por encima de la navegacion y el contenido. */
+  place-items: center; /* Centra la tarjeta del perfil en la pantalla. */
+  padding: 16px; /* Deja un margen alrededor de la tarjeta en pantallas pequenas. */
+  overflow-y: auto; /* Permite desplazarse si la pantalla es mas baja que el perfil. */
+}
+
+.modal-perfil:target {
+  display: grid; /* Muestra unicamente el perfil cuyo enlace esta activo. */
+}
+
+.modal-fondo {
+  position: fixed; /* Cubre la pantalla para oscurecerla y ofrecer un area para cerrar. */
+  inset: 0; /* Extiende el fondo oscuro hasta los bordes de la ventana. */
+  background-color: rgba(0, 0, 0, 0.65); /* Destaca el perfil sobre el resto de la pagina. */
+}
+
+.perfil-animal {
+  display: grid; /* Organiza la foto y los datos en columnas. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Da el mismo ancho a foto y contenido sin desbordes. */
+  gap: 32px; /* Separa la foto de la informacion del perfil. */
+  align-items: center; /* Centra la informacion con respecto a la foto. */
+  position: relative; /* Sirve de referencia para ubicar el boton de cerrar. */
+  z-index: 1; /* Coloca la tarjeta delante del fondo oscurecido. */
+  width: min(900px, 100%); /* Limita el ancho de la tarjeta sin exceder la ventana. */
+  max-height: 90vh; /* Mantiene el perfil dentro del alto visible de la ventana. */
+  overflow-y: auto; /* Permite desplazarse dentro del perfil en pantallas bajas. */
+  margin-bottom: 0; /* Evita espacio sobrante debajo del perfil dentro del dialogo. */
+  padding: 24px; /* Da espacio interior al bloque del perfil. */
+  background-color: #f7f9f6; /* Distingue el perfil del fondo blanco. */
+  border: 1px solid #e0e0e0; /* Marca el limite del bloque con un borde suave. */
+  border-radius: 12px; /* Redondea las esquinas del bloque. */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25); /* Separa visualmente el perfil del fondo oscurecido. */
+}
+
+.perfil-animal > img {
+  width: 100%; /* Ajusta la foto al ancho de su columna. */
+  height: 360px; /* Da una presencia amplia a la foto del perfil. */
+  object-fit: cover; /* Llena el marco de la foto sin deformarla. */
+  border-radius: 8px; /* Redondea las esquinas de la foto ampliada. */
+}
+
+.modal-cerrar {
+  position: absolute; /* Fija el control de cierre en la esquina del perfil. */
+  top: 12px; /* Separa el boton del borde superior. */
+  right: 12px; /* Separa el boton del borde derecho. */
+  z-index: 1; /* Mantiene la X por encima del contenido del perfil. */
+  display: grid; /* Centra la X dentro del boton. */
+  width: 40px; /* Define un area facil de pulsar. */
+  height: 40px; /* Mantiene el boton de cierre cuadrado. */
+  place-items: center; /* Centra horizontal y verticalmente el simbolo. */
+  border: 0; /* Quita el borde del enlace que funciona como boton de cierre. */
+  border-radius: 50%; /* Convierte el boton de cierre en un circulo. */
+  background-color: #ffffff; /* Contrasta el boton con la tarjeta del perfil. */
+  color: #333333; /* Mantiene visible la X. */
+  font-size: 1.7rem; /* Hace suficientemente grande el simbolo de cierre. */
+  line-height: 1; /* Evita que el simbolo desplace el centro visual. */
+  cursor: pointer; /* Indica que se puede pulsar para cerrar. */
+}
+
+.modal-cerrar:hover {
+  background-color: #e8e8e8; /* Resalta el control cuando se pasa el cursor. */
+}
+
+.perfil-contenido h3 {
+  margin: 10px 0; /* Separa el nombre del estado y de la descripcion. */
+  color: #2e7d32; /* Resalta el nombre con el color principal. */
+  font-size: 1.8rem; /* Destaca el nombre dentro del perfil ampliado. */
+}
+
+.perfil-contenido .badge {
+  position: static; /* Coloca el estado en el flujo del texto, no sobre la foto. */
+  display: inline-block; /* Permite que la etiqueta conserve su forma junto al contenido. */
+}
+
+.perfil-descripcion {
+  margin-bottom: 16px; /* Separa la historia de los detalles del animal. */
+  color: #444444; /* Usa un tono legible para la descripcion. */
+}
+
+.perfil-detalles {
+  margin-bottom: 20px; /* Separa las caracteristicas del boton de adopcion. */
+}
+
+.perfil-detalles p {
+  margin-bottom: 8px; /* Separa cada dato de salud y comportamiento. */
+}
+
+.perfil-contenido .btn-primario {
+  border: 0; /* Quita el borde predeterminado del boton de solicitud. */
+  cursor: pointer; /* Indica que el boton se puede pulsar. */
+}
+
+.btn-solicitud-cerrada,
+.btn-solicitud-cerrada:hover {
+  background-color: #757575; /* Muestra la solicitud cerrada con un tono neutral. */
+  cursor: not-allowed; /* Indica que no se puede solicitar un animal ya adoptado. */
+}
+
+.nota-adopcion {
+  margin-top: 8px; /* Separa el aviso del boton deshabilitado. */
+  color: #666666; /* Muestra el aviso en un gris secundario. */
+  font-size: 0.9rem; /* Mantiene el aviso ligeramente menor que el texto normal. */
+}
+
+.seccion-contacto {
+  padding: 60px 0; /* Separa el formulario de las secciones vecinas. */
+  background-color: #f7f9f6; /* Mantiene el fondo claro usado en otras secciones. */
+}
+
+.contacto-contenido {
+  display: grid; /* Coloca el formulario junto a los datos de contacto. */
+  grid-template-columns: 2fr 1fr; /* Da mas espacio al formulario que al panel informativo. */
+  gap: 24px; /* Separa ambas columnas. */
+  align-items: start; /* Alinea los dos bloques desde su borde superior. */
+}
+
+.formulario-contacto,
+.datos-contacto {
+  padding: 24px; /* Agrega espacio interior a cada bloque de contacto. */
+  background-color: #ffffff; /* Separa visualmente los bloques del fondo de la seccion. */
+  border: 1px solid #e0e0e0; /* Delimita cada bloque con un borde discreto. */
+  border-radius: 8px; /* Redondea ligeramente las esquinas. */
+}
+
+.nota-obligatorios,
+.nota-formulario {
+  margin-bottom: 16px; /* Separa las notas del contenido que sigue. */
+  color: #666666; /* Muestra las indicaciones en un gris secundario. */
+  font-size: 0.9rem; /* Mantiene las notas un poco menores que el texto normal. */
+}
+
+.nota-obligatorios span,
+.campo label span:not(.opcional) {
+  color: #bf360c; /* Marca visualmente los campos obligatorios. */
+  font-weight: bold; /* Hace que el asterisco sea facil de identificar. */
+}
+
+.formulario-grid {
+  display: grid; /* Ordena campos en una cuadricula sencilla. */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Muestra dos campos por fila cuando hay espacio. */
+  gap: 16px; /* Separa los campos horizontal y verticalmente. */
+  margin-bottom: 20px; /* Deja espacio antes del boton de envio. */
+}
+
+.campo {
+  display: flex; /* Apila la etiqueta, el control y el mensaje de estado. */
+  flex-direction: column; /* Mantiene cada etiqueta encima de su campo. */
+  gap: 6px; /* Separa etiqueta, entrada y mensaje. */
+}
+
+.campo-completo {
+  grid-column: 1 / -1; /* Hace que el mensaje ocupe el ancho de las dos columnas. */
+}
+
+.campo label {
+  color: #333333; /* Mantiene las etiquetas legibles sobre el fondo blanco. */
+  font-weight: bold; /* Diferencia la etiqueta del texto que se escribe. */
+}
+
+.opcional {
+  color: #666666; /* Distingue el dato opcional del indicador obligatorio. */
+  font-size: 0.85rem; /* Mantiene la aclaracion compacta. */
+  font-weight: normal; /* Evita que la aclaracion parezca parte del nombre del campo. */
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%; /* Hace que el control llene el ancho de su columna. */
+  padding: 10px; /* Crea un area comoda para escribir o seleccionar. */
+  border: 1px solid #bdbdbd; /* Define el borde normal del campo. */
+  border-radius: 4px; /* Redondea las esquinas de los controles. */
+  background-color: #ffffff; /* Mantiene el fondo del campo blanco. */
+  color: #333333; /* Mantiene legible el texto escrito. */
+  font: inherit; /* Usa la misma tipografia que el resto del sitio. */
+}
+
+.campo textarea {
+  resize: vertical; /* Permite ampliar el mensaje solo hacia arriba o abajo. */
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: 2px solid #2e7d32; /* Resalta el campo que esta usando el teclado o el mouse. */
+  outline-offset: 1px; /* Separa el indicador de foco del borde del control. */
+}
+
+.campo input:required:placeholder-shown,
+.campo textarea:required:placeholder-shown,
+.campo select:required:invalid,
+.campo input:not(:placeholder-shown):invalid,
+.campo-error input {
+  border: 2px solid #bf360c; /* Senala campos obligatorios vacios o con formato incorrecto. */
+}
+
+.campo-exito input {
+  border: 2px solid #2e7d32; /* Simula el borde de un campo con contenido correcto. */
+}
+
+.mensaje-error,
+.mensaje-exito {
+  font-size: 0.85rem; /* Mantiene los mensajes de validacion secundarios. */
+}
+
+.mensaje-error {
+  color: #bf360c; /* Identifica el mensaje de error con rojo. */
+}
+
+.mensaje-exito {
+  color: #2e7d32; /* Identifica el mensaje de ejemplo correcto con verde. */
+}
+
+.btn-enviar {
+  border: 0; /* Quita el borde predeterminado del boton de envio. */
+  cursor: pointer; /* Indica que el boton se puede pulsar. */
+}
+
+.datos-contacto h3 {
+  margin-bottom: 12px; /* Separa el titulo de la informacion de contacto. */
+  color: #2e7d32; /* Usa el color principal para los encabezados del panel. */
+  font-size: 1.2rem; /* Da jerarquia a los encabezados del panel. */
+}
+
+.datos-contacto p {
+  margin-bottom: 12px; /* Separa los parrafos del panel. */
+}
+
+.datos-contacto ul {
+  margin: 0 0 12px 20px; /* Indenta la lista de correo y telefono. */
+}
+
+.datos-contacto li {
+  margin-bottom: 8px; /* Separa los datos directos de contacto. */
+  overflow-wrap: anywhere; /* Evita que un correo largo desborde el panel. */
+}
+
+.datos-contacto a {
+  color: #2e7d32; /* Distingue los enlaces de contacto del texto normal. */
+  text-decoration: underline; /* Hace evidente que correo y telefono son enlaces. */
+}
+
+.datos-contacto .titulo-redes {
+  margin-top: 24px; /* Separa las redes de los datos de contacto directo. */
+}
+
+.redes-sociales {
+  display: flex; /* Coloca los enlaces sociales en una fila. */
+  flex-wrap: wrap; /* Permite que los enlaces pasen a otra linea si falta espacio. */
+  gap: 10px; /* Separa los enlaces entre si. */
+  margin-bottom: 12px; /* Deja espacio antes de la nota sobre los enlaces. */
+}
+
+.redes-sociales a {
+  padding: 6px 10px; /* Amplia el area clicable de cada red social. */
+  border-radius: 4px; /* Redondea los enlaces para que parezcan botones simples. */
+  background-color: #e8f2e8; /* Distingue los enlaces sociales del fondo del panel. */
+  text-decoration: none; /* Evita el subrayado dentro de los botones sociales. */
 }
 
 /* Responsive del catálogo */
 @media (max-width: 992px) {
   .grid-animales {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr); /* Reduce el catalogo a dos columnas en pantallas medianas. */
+  }
+
+  .perfil-animal > img {
+    height: 300px; /* Reduce la altura de la foto del modal en tabletas. */
   }
 }
 
+/* En móvil, la foto y los datos del perfil se apilan en una sola columna. */
 @media (max-width: 576px) {
   .grid-animales {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* Muestra una tarjeta por fila en telefonos. */
+  }
+
+  .perfil-animal {
+    grid-template-columns: 1fr; /* Apila foto y datos en una sola columna. */
+    gap: 18px; /* Reduce la separacion entre foto y texto en movil. */
+    padding: 16px; /* Reduce el relleno para aprovechar el ancho pequeno. */
+  }
+
+  .perfil-animal > img {
+    height: 240px; /* Ajusta la foto del modal a la pantalla del telefono. */
+  }
+
+  .modal-perfil {
+    padding: 10px; /* Reduce el margen exterior para aprovechar el ancho del telefono. */
   }
 }
 
 @media (max-width: 768px) {
+  .contacto-contenido {
+    grid-template-columns: 1fr; /* Apila el formulario y los datos en pantallas pequenas. */
+  }
+
   .mosaico-fotos {
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: 1fr; /* Apila las fotos de la galeria en movil. */
+    gap: 15px; /* Reduce la separacion para aprovechar mejor el espacio. */
   }
 
   .nav-contenedor {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: column; /* Coloca el logo y los enlaces uno debajo del otro. */
+    gap: 12px; /* Separa el logo de los enlaces en pantallas pequenas. */
   }
   
   .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
+    flex-wrap: wrap; /* Permite que los enlaces pasen a otra linea si falta espacio. */
+    justify-content: center; /* Centra los enlaces que se distribuyen en varias lineas. */
+    gap: 12px; /* Separa los enlaces de navegacion en movil. */
+  }
+
+  .formulario-grid {
+    grid-template-columns: 1fr; /* Muestra un campo por fila en telefonos. */
+  }
+
+  .campo-completo {
+    grid-column: auto; /* Devuelve el mensaje al flujo normal de una columna. */
   }
 
   .hero-contenido h1 {
-    font-size: 1.6rem;
+    font-size: 1.6rem; /* Reduce el titulo para que quepa en pantallas pequenas. */
   }
   .hero-botones {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Apila los botones del hero en movil. */
+    align-items: center; /* Centra los botones apilados. */
   }
   .carrusel-marco {
-    height: 260px;
+    height: 260px; /* Reduce la altura del carrusel para pantallas pequenas. */
+  }
+   .bloques-mv {
+    grid-template-columns: 1fr; /* Apila mision y vision en una sola columna. */
   }
 }  
