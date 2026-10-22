@@ -692,6 +692,39 @@ a {
   text-decoration: none; /* Evita el subrayado dentro de los botones sociales. */
 }
 
+.footer {
+  padding: 24px 0; /* Da espacio al pie y lo separa del contenido principal. */
+  background-color: #1f4d2b; /* Diferencia el pie con un verde oscuro y sobrio. */
+  color: #ffffff; /* Mantiene el texto legible sobre el fondo oscuro. */
+}
+
+.footer-contenido {
+  display: flex; /* Distribuye los datos del pie usando Flexbox. */
+  flex-wrap: wrap; /* Permite que los bloques pasen a otra fila en pantallas estrechas. */
+  justify-content: space-between; /* Reparte los bloques a lo ancho del pie. */
+  align-items: center; /* Alinea verticalmente los bloques. */
+  gap: 12px 24px; /* Mantiene separacion entre filas y columnas. */
+}
+
+.footer-contenido p {
+  margin: 0; /* Evita margenes de parrafo que alteren la distribucion flex. */
+}
+
+.footer-fundacion {
+  font-size: 1.05rem; /* Destaca el nombre de la fundacion. */
+}
+
+.footer-contenido a {
+  color: #ffffff; /* Conserva el contraste de los enlaces en el fondo oscuro. */
+  text-decoration: underline; /* Identifica claramente los enlaces. */
+  text-underline-offset: 3px; /* Separa el subrayado para mejorar su lectura. */
+}
+
+.footer-contenido a:hover,
+.footer-contenido a:focus-visible {
+  color: #d6f5d6; /* Resalta los enlaces al pasar el cursor o navegar con teclado. */
+}
+
 /* Responsive del catálogo */
 @media (max-width: 992px) {
   .grid-animales {
@@ -743,6 +776,11 @@ a {
     flex-wrap: wrap; /* Permite que los enlaces pasen a otra linea si falta espacio. */
     justify-content: center; /* Centra los enlaces que se distribuyen en varias lineas. */
     gap: 12px; /* Separa los enlaces de navegacion en movil. */
+  }
+
+  .footer-contenido {
+    flex-direction: column; /* Apila y centra los datos del pie en pantallas pequenas. */
+    text-align: center; /* Facilita la lectura de los bloques apilados. */
   }
 
   .formulario-grid {
