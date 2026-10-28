@@ -166,6 +166,16 @@ a {
   color: #2e7d32;
 }
 
+.btn-tercero {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.btn-tercero:hover {
+  background-color: #ffffff;
+  color: #2e7d32;
+}
 
 .seccion-carrusel {
   padding: 50px 0;
